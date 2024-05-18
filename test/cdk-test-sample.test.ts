@@ -8,11 +8,13 @@ describe('CdkTestSampleStack', () => {
     const stack = new CdkTestSampleStack(app, 'MyTestStack');
     const template = Template.fromStack(stack);
 
+    // Faine-grained assertions Test
     template.hasResourceProperties('AWS::Lambda::Function', {
       Handler: 'index.handler',
       Runtime: 'nodejs20.x',
     });
 
+    // Faine-grained assertions Test
     template.hasResourceProperties('AWS::StepFunctions::StateMachine', {
       DefinitionString: JSON.stringify({
         StartAt: "StartState",
