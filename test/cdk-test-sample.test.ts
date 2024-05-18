@@ -26,6 +26,7 @@ describe('CdkTestSampleStack', () => {
     });
 
     // Snapshot Test
+    // 更新時はテストが失敗するので`npm test -- -u`コマンドを実行しスナップショットをアップデートする
     expect(template.toJSON()).toMatchSnapshot();
   });
 });

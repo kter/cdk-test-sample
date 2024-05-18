@@ -17,6 +17,7 @@ export class CdkTestSampleStack extends cdk.Stack {
       code: Code.fromAsset('lambda'),
       environment: {
         STATE_MACHINE_ARN: stateMachine.stateMachineArn,
+        TEST: 'TEST1',
       },
     });
     stateMachine.grantStartExecution(func);
