@@ -10,7 +10,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
