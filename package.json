@@ -12,10 +12,13 @@
     "cdk": "cdk",
     "lint": "eslint .",
     "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'",
-    "prepare": "husky"
+    "prepare": "husky  "
   },
   "lint-staged": {
-      "*.{ts,tsx,js}": "npm run format; npm run lint"
+    "*.{ts,tsx,js}": [
+      "npm run format",
+      "npm run lint"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
