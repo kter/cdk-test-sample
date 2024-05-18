@@ -24,6 +24,9 @@ describe('CdkTestSampleStack', () => {
         }
       })
     });
+
+    // Snapshot Test
+    expect(template.toJSON()).toMatchSnapshot();
   });
 });
 
