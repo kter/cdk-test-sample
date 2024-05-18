@@ -21,6 +21,7 @@
     "typescript": "~5.4.5"
   },
   "dependencies": {
+    "@cdklabs/cdk-validator-cfnguard": "^0.0.58",
     "aws-cdk-lib": "2.142.1",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
