@@ -178,6 +178,7 @@ exports[`CdkTestSampleStack Synthesizes 1`] = `
             "STATE_MACHINE_ARN": {
               "Ref": "CdkTestSampleStateMachine2573637A",
             },
+            "TEST": "TEST1",
           },
         },
         "Handler": "index.handler",
