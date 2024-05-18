@@ -4,11 +4,13 @@
   "bin": {
     "cdk-test-sample": "bin/cdk-test-sample.js"
   },
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
