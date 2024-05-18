@@ -1,5 +1,5 @@
 import { App } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
+import { Template, Match } from 'aws-cdk-lib/assertions';
 import { CdkTestSampleStack } from '../lib/cdk-test-sample-stack';
 
 describe('CdkTestSampleStack', () => {
@@ -16,7 +16,8 @@ describe('CdkTestSampleStack', () => {
 
     // Faine-grained assertions Test
     template.hasResourceProperties('AWS::StepFunctions::StateMachine', {
-      DefinitionString: JSON.stringify({
+      DefinitionString: Match.serializedJson(
+        {
         StartAt: "StartState",
         States: {
           StartState: {
@@ -24,12 +25,13 @@ describe('CdkTestSampleStack', () => {
             End: true
           }
         }
-      })
-    });
+        }
+      )}),
 
     // Snapshot Test
     // 更新時はテストが失敗するので`npm test -- -u`コマンドを実行しスナップショットをアップデートする
     expect(template.toJSON()).toMatchSnapshot();
   });
 });
+
 
