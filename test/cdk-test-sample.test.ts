@@ -7,10 +7,12 @@ import { CfnGuardValidator } from '@cdklabs/cdk-validator-cfnguard';
 describe('CdkTestSampleStack', () => {
   test('Synthesizes', () => {
     const app = new App({
+        // CloudFormation Guard
         policyValidationBeta1: [new CfnGuardValidator()],
     });
     const stack = new CdkTestSampleStack(app, 'MyTestStack');
     const template = Template.fromStack(stack);
+    // cdk nag
     Aspects.of(stack).add(new AwsSolutionsChecks({ verbose: true }));
 
     // Faine-grained assertions Test
