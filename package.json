@@ -12,7 +12,7 @@
     "cdk": "cdk",
     "lint": "eslint .",
     "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'",
-    "prepare": "husky  "
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [
