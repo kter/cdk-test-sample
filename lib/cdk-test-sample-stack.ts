@@ -13,7 +13,7 @@ export class CdkTestSampleStack extends cdk.Stack {
 
     const func = new Function(this, 'LambdaFunction', {
       runtime: Runtime.NODEJS_20_X,
-      handler: 'handler',
+      handler: 'index.handler',
       code: Code.fromAsset('lambda'),
       environment: {
         STATE_MACHINE_ARN: stateMachine.stateMachineArn,
