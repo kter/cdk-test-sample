@@ -171,7 +171,7 @@ exports[`CdkTestSampleStack Synthesizes 1`] = `
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "5465cacec377a2e1bc519985a4435556f494798291cf2848874768793acafa55.zip",
+          "S3Key": "3f7c7eb464570af916dc9d3206151dac7ede263828a5ded09d3a7f47d34a9248.zip",
         },
         "Environment": {
           "Variables": {
