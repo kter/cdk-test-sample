@@ -1,16 +1,25 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import { StateMachine, Pass } from 'aws-cdk-lib/aws-stepfunctions';
+import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
 
 export class CdkTestSampleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+    super(scope, id);
 
-    // The code that defines your stack goes here
+    const stateMachine = new StateMachine(this, 'CdkTestSampleStateMachine', {
+      definition: new Pass(this, 'StartState'),
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'CdkTestSampleQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    const func = new Function(this, 'LambdaFunction', {
+      runtime: Runtime.NODEJS_20_X,
+      handler: 'handler',
+      code: Code.fromAsset('lambda'),
+      environment: {
+        STATE_MACHINE_ARN: stateMachine.stateMachineArn,
+      },
+    });
+    stateMachine.grantStartExecution(func);
+
   }
 }
