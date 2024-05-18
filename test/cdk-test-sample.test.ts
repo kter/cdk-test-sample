@@ -1,5 +1,5 @@
 import { App } from 'aws-cdk-lib';
-import { Template, Match } from 'aws-cdk-lib/assertions';
+import { Template, Match, Capture } from 'aws-cdk-lib/assertions';
 import { CdkTestSampleStack } from '../lib/cdk-test-sample-stack';
 
 describe('CdkTestSampleStack', () => {
@@ -31,6 +31,20 @@ describe('CdkTestSampleStack', () => {
     // Snapshot Test
     // 更新時はテストが失敗するので`npm test -- -u`コマンドを実行しスナップショットをアップデートする
     expect(template.toJSON()).toMatchSnapshot();
+
+    // Fine-grained assertions Test: Capture
+    const startAtCapture = new Capture();
+    const statesCapture = new Capture();
+    template.hasResourceProperties('AWS::StepFunctions::StateMachine', {
+      DefinitionString: Match.serializedJson({
+        StartAt: startAtCapture,
+        States: statesCapture,
+      }),
+    });
+    // 開始状態がStartで始まることを確認
+    expect(startAtCapture.asString()).toEqual(expect.stringMatching(/^Start/));
+    // statesオブジェクトに開始ステートが存在することを確認
+    expect(statesCapture.asObject()).toHaveProperty(startAtCapture.asString());
   });
 });
 
