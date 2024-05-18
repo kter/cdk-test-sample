@@ -1,12 +1,14 @@
-import { App } from 'aws-cdk-lib';
+import { App, Aspects } from 'aws-cdk-lib';
 import { Template, Match, Capture } from 'aws-cdk-lib/assertions';
 import { CdkTestSampleStack } from '../lib/cdk-test-sample-stack';
+import { AwsSolutionsChecks } from 'cdk-nag';
 
 describe('CdkTestSampleStack', () => {
   test('Synthesizes', () => {
     const app = new App();
     const stack = new CdkTestSampleStack(app, 'MyTestStack');
     const template = Template.fromStack(stack);
+    Aspects.of(stack).add(new AwsSolutionsChecks({ verbose: true }));
 
     // Faine-grained assertions Test
     template.hasResourceProperties('AWS::Lambda::Function', {
